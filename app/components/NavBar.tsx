@@ -14,12 +14,12 @@ const NavBar = () => {
 
       {/* Navgaition */}
       <div className="flex gap-2">
-        <Button>
+        <ButtonLink>
           <Link href="/">Home</Link>
-        </Button>
-        <Button>
+        </ButtonLink>
+        <ButtonLink>
           <Link href="/blog">Blog</Link>
-        </Button>
+        </ButtonLink>
       </div>
 
       {/* Soical Icons */}
@@ -90,6 +90,14 @@ const NavBar = () => {
 //     </button>
 //   );
 // };
+
+export function ButtonLink({ children }) {
+  return (
+    <Button variant="outline" asChild>
+      {children}
+    </Button>
+  );
+}
 const Icon = ({ children, href, title, className = "" }) => {
   return (
     <a
