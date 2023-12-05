@@ -26,7 +26,8 @@ export default config({
           dividers: true,
           links: true,
           images: {
-            directory: "public/images/posts/content",
+            directory: "public/images/posts",
+            publicPath: "/images/posts/",
           },
         }),
       },

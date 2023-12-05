@@ -1,5 +1,14 @@
 import NavBar from "./components/NavBar";
 import "./styles.css";
+import { Inter as FontSans } from "next/font/google";
+import { cn } from "../@/lib/utils";
+import { ThemeProvider } from "../@/components/theme-provider";
+import Head from "next/head";
+
+export const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export default function RootLayout({
   children,
@@ -8,8 +17,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-[#ebebeb]">
-        <div>{children}</div>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <body className={cn("bg-[#ebebeb] dark:bg-gray-700", fontSans.variable)}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
