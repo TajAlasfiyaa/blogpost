@@ -1,0 +1,53 @@
+---
+title: coding
+description: just for testing
+image: /images/cover/coding/image.png
+---
+```javascript
+import { Divider, Grid, GridItem, Show } from "@chakra-ui/react";
+import { NavBar } from "./components/NavBar";
+import GameGrid from "./components/GameGrid";
+import SideBar from "./components/SideBar";
+import { useState } from "react";
+import { Genres } from "./hooks/useGenres";
+
+function App() {
+  const [selectedGenre, setSelectedGenre] = useState<Genres | null>(null);
+  return (
+    <>
+      <Grid
+        templateAreas={{
+          base: `"nav " "main" `,
+          lg: `"nav nav " " side main"`,
+        }}
+        templateColumns={{ base: "1fr", lg: "200px 1fr" }}
+        gap="1"
+        fontWeight="bold"
+        maxW="100vw"
+      >
+        <GridItem area={"nav"}>
+          <NavBar />
+          <Divider />
+        </GridItem>
+        <Show above="lg">
+          <GridItem px={8} area={"side"}>
+            <SideBar setSelectGenre={(gen) => setSelectedGenre(gen)} />
+          </GridItem>
+        </Show>
+        <GridItem p={3} area={"main"}>
+          <GameGrid selectGenre={selectedGenre} />
+        </GridItem>
+      </Grid>
+    </>
+  );
+}
+
+export default App;
+
+```
+
+> dfdf
+> 
+> dfe
+
+![](download.png)
