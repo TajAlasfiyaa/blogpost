@@ -2,17 +2,13 @@ import { config, collection, fields } from "@keystatic/core";
 
 export default config({
   storage: {
-    kind: "github",
-    repo: {
-      owner: "TajAlasfiyaa",
-      name: "blogpost",
-    },
+    kind: "local",
   },
   collections: {
     posts: collection({
       label: "Posts",
       slugField: "title",
-      path: "posts/*",
+      path: "content/posts/*",
       format: { contentField: "content" },
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
@@ -21,8 +17,8 @@ export default config({
           label: "Cover",
           description: "The avatar for this user",
           // This will output the images in the "public" directory
-          directory: "public/images/cover",
-          publicPath: "/images/cover/",
+          directory: "public/assets",
+          publicPath: "/assets/posts/",
         }),
         content: fields.document({
           label: "Content",
@@ -30,8 +26,8 @@ export default config({
           dividers: true,
           links: true,
           images: {
-            directory: "public/images/posts",
-            publicPath: "/images/posts/",
+            directory: "public/assets/posts",
+            publicPath: "/assets/posts/",
           },
         }),
       },
