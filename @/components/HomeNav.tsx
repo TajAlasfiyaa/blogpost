@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import logo from "./logo.png";
 // import links from "../../config/links.json";
 import clsx from "clsx";
-import me from "../../public/images/me.svg";
+import me from "../../public/assets/me.svg";
 
 import {
   FaGithub,

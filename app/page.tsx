@@ -4,7 +4,7 @@ import { reader } from "./reader";
 import Link from "next/link";
 import { Button } from "../@/components/ui/button";
 import Image from "next/image";
-import taj from "../public/images/me.svg";
+import taj from "../public/assets/me.svg";
 import { ModeToggle } from "@/components/ui/ModeToggle";
 import Home from "@/components/Home";
 export default async function Homepage() {

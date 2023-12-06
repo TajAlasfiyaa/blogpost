@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import me from "../../public/images/me.svg";
+import me from "../../public/assets/me.svg";
 import NavBar from "./NavBar";
 import HomeNav from "./HomeNav";
 
