@@ -1,17 +1,19 @@
 import clsx from "clsx";
-import { ButtonGhost } from "./components/ButtonGhost";
+import { ButtonGhost } from "../@/components/ButtonGhost";
 import { reader } from "./reader";
 import Link from "next/link";
 import { Button } from "../@/components/ui/button";
 import Image from "next/image";
 import taj from "../public/images/me.svg";
 import { ModeToggle } from "@/components/ui/ModeToggle";
+import Home from "@/components/Home";
 export default async function Homepage() {
   const posts = await reader.collections.posts.all();
 
   return (
     <>
-      <div className="w-full flex flex-row-reverse p-3  ">
+      <Home />
+      {/* <div className="w-full flex flex-row-reverse p-3  ">
         {[
           ["Blog", "/blog"],
           ["Home", "/"],
@@ -23,9 +25,9 @@ export default async function Homepage() {
           </Button>
         ))}
         <ModeToggle />
-      </div>
+      </div> */}
 
-      {/* Hero */}
+      {/* Hero
       <div className="m-auto  max-w-5xl  ">
         <div className="flex flex-col md:flex-row items-center">
           <Image
@@ -49,7 +51,7 @@ export default async function Homepage() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

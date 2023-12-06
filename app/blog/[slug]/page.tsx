@@ -9,7 +9,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
   if (!post) return <div>Post not found!</div>;
 
   return (
-    <div className="m-auto max-w-3xl prose prose-xl">
+    <div className="m-auto  prose prose-xl dark:prose-invert ">
       <h1>{post.title}</h1>
       <div>
         <DocumentRenderer document={await post.content()} />

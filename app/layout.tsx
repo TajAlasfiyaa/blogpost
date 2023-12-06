@@ -1,4 +1,4 @@
-import NavBar from "./components/NavBar";
+import NavBar from "../@/components/NavBar";
 import "./styles.css";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "../@/lib/utils";
@@ -20,7 +20,7 @@ export default function RootLayout({
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body className={cn("bg-[#ebebeb] dark:bg-gray-700", fontSans.variable)}>
+      <body className={cn(fontSans.variable, "dark:bg-[#0f172a]")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -7,7 +7,7 @@ export default async function Homepage() {
 
   return (
     <>
-      <div className="m-auto max-w-3xl prose prose-xl  ">
+      <div className="m-auto max-w-3xl prose prose-xl dark:prose-invert ">
         <h2>Posts</h2>
         <ul>
           {posts.map((post) => (
@@ -20,7 +20,7 @@ export default async function Homepage() {
                   alt="tah"
                 />
               )}
-              <Link href={`/post/${post.slug}`}>
+              <Link href={`/blog/${post.slug}`}>
                 <h2>{post.entry.title}</h2>
                 <p>{post.entry.description}</p>
               </Link>
