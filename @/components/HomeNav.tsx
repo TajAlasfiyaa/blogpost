@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import logo from "./logo.png";
-import links from "../../config/links.json";
+// import links from "../../config/links.json";
 import clsx from "clsx";
 import me from "../../public/images/me.svg";
 
@@ -17,7 +17,7 @@ import {
 import { ButtonGhost } from "./ButtonGhost";
 import { ModeToggle } from "./ui/ModeToggle";
 import { cn } from "@/lib/utils";
-const NavBar = () => {
+const HomeNav = () => {
   const [toggle, setToggle] = useState(false);
   return (
     <nav className=" border-gray-200 ">
@@ -164,4 +164,4 @@ const NavBar = () => {
 //     </a>
 //   );
 // };
-export default NavBar;
+export default HomeNav;

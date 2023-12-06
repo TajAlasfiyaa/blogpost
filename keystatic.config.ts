@@ -1,9 +1,22 @@
 import { config, collection, fields } from "@keystatic/core";
-
+import { defaultMetadata } from "./site.config";
+const isVercelProd = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
 export default config({
-  storage: {
-    kind: "local",
-  },
+  storage: isVercelProd
+    ? {
+        kind: "github",
+        repo: {
+          owner:
+            process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER ||
+            defaultMetadata.github.username,
+          name:
+            process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG ||
+            defaultMetadata.github.repository,
+        },
+      }
+    : {
+        kind: "local",
+      },
   collections: {
     posts: collection({
       label: "Posts",

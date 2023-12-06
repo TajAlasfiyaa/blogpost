@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import logo from "./logo.png";
-import links from "../../config/links.json";
+// import links from "../../config/links.json";
 import clsx from "clsx";
 import me from "../../public/images/me.svg";
 
