@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
   return (
-    <nav className=" border-gray-200 fixed  ">
+    <nav className=" border-gray-200 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
           href="/"

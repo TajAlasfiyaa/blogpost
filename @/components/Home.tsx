@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import me from "../../public/images/me.svg";
 import NavBar from "./NavBar";
+import HomeNav from "./HomeNav";
 
 export default function Component() {
   return (
     <div className="flex flex-col min-h-[100vh]">
-      <NavBar />
+      <HomeNav />
       <main className="flex-1">
         <section className="w-full pt-12 md:pt-24 lg:pt-32 border-y">
           <div className="px-4 md:px-6 space-y-10 xl:space-y-16">

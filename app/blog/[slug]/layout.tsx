@@ -6,10 +6,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      <NavBar />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }
