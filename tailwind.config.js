@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 const defaultTheme = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -13,6 +15,9 @@ module.exports = {
       },
     },
     extend: {
+      colors: {
+        primary: colors.amber,
+      },
       fontFamily: {
         mono: [
           "var(--font-geist-mono)",
@@ -36,6 +41,14 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      typography: (/** @type {{ theme: Function }} */ { theme }) => ({
+        primary: {
+          css: {
+            "--tw-prose-links": theme("colors.amber[600]"),
+            "--tw-prose-invert-links": theme("colors.amber[500]"),
+          },
+        },
+      }),
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],

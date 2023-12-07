@@ -1,4 +1,3 @@
-import Home from "@/components/Home";
 import { AdaptiveLink } from "@/components/adaptive-link";
 import { ContainerSection } from "@/components/container-section";
 import { getBasicRenderers } from "@/components/keystatic/basic-renderers";
@@ -9,6 +8,7 @@ import {
 } from "@/components/ui/tooltip";
 import { links } from "@/constants/links";
 import { getHomeSingleton } from "@/server/keystatic";
+import { cn } from "@/utils/ui";
 import { DocumentRenderer } from "@keystatic/core/renderer";
 export default async function Homepage() {
   const query = await getHomeSingleton();
@@ -20,7 +20,14 @@ export default async function Homepage() {
       <p className="mb-8 text-2xl">
         Software engineer specialized in frontend development
       </p>
-      <DocumentRenderer document={content} renderers={renderer} />
+      <div
+        className={cn(
+          "mb-16 max-w-screen-sm space-y-4 text-neutral-700 dark:text-neutral-300",
+          "[&_a]:text-primary-600 dark:[&_a]:text-primary-500 [&_a:hover]:underline"
+        )}
+      >
+        <DocumentRenderer document={content} renderers={renderer} />
+      </div>
       <ul className="[&_a:hover]:text-primary-600 dark:[&_a:hover]:text-primary-500 flex items-center gap-x-4">
         {links.map(({ href, Icon, label }) => (
           <li key={label}>
