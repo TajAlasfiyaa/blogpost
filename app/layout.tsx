@@ -22,8 +22,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${defaultMetadata.url}/social.png`,
-        width: 526,
-        height: 275,
+
         type: "image/png",
       },
     ],

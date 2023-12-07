@@ -53,8 +53,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [
         {
           url: `${defaultMetadata.url}/api/opengraph/article?${search}`,
-          width: 800,
-          height: 600,
         },
       ],
     },
