@@ -1,14 +1,12 @@
 import Link from "next/link";
 import { getReader } from "../../../server/keystatic";
 import Image from "next/image";
-import NavBar from "@/components/navbar";
 
 export default async function Homepage() {
   const posts = await getReader().collections.posts.all();
 
   return (
     <div>
-      <NavBar />
       <div className="m-auto max-w-3xl prose prose-xl dark:prose-invert ">
         <h2>Psosts</h2>
         <ul>
