@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "paths": { "@/*": ["./@/*"] },
+    "paths": { "@/*": ["./@/*","./*"] },
     "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

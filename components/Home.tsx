@@ -1,33 +1,58 @@
 import Image from "next/image";
 import Link from "next/link";
-import me from "../../public/assets/me.svg";
+import me from "@/public/assets/me.svg";
 import NavBar from "./NavBar";
 import HomeNav from "./HomeNav";
 
 export default function Component() {
   return (
-    <div className="flex flex-col min-h-[100vh]">
+    <div className="    ">
       <HomeNav />
-      <main className="flex-1">
-        <section className="w-full pt-12 md:pt-24 lg:pt-32 border-y">
-          <div className="px-4 md:px-6 space-y-10 xl:space-y-16">
-            <h1 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem] text-center">
-              TajAlasifyaa Ishag
-            </h1>
-            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 text-center">
-              Front End Developer | Open Source Contributer
-            </p>
-            <div className="flex justify-center">
-              <Link
-                className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-                href="#"
-              >
-                Contact Me
-              </Link>
+      <main className="">
+        <div
+          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          aria-hidden="true"
+        >
+          <div
+            className="relative dark:left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#0178a8] to-[#00b7ff] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+            }}
+          />
+        </div>
+
+        <div className="max-h-[90vh]">
+          <section className="w-full flex flex-col sm:flex-row items-center justify-center pt-12 md:pt-24 lg:pt-32  ">
+            <Image src={me} alt="tajalasfiyaa" height={350} width={350} />
+            <div className="px-4 md:px-6">
+              <h1 className="lg:leading-tighter text-5xl font-bold tracking-tighter sm:text-6xl md:text-8xl xl:text-[6.4rem] 2xl:text-[3.75rem] text-center">
+                TajAlasifyaa
+              </h1>
+              <p className="mx-auto max-w-[700px] text-blue-600 md:text-xl  text-center">
+                Front End Developer | Open Source Contributer
+              </p>
+              <div className="flex justify-center">
+                <Link
+                  className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+                  href="#"
+                >
+                  Contact Me
+                </Link>
+              </div>
             </div>
-          </div>
-        </section>
-        <section className="w-full py-12 md:py-24 lg:py-32" id="about">
+          </section>
+          <svg
+            width="300"
+            height="300"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className=""
+          >
+            <path d="M12 15a1 1 0 0 1-.707-.293l-4-4a1 1 0 1 1 1.414-1.414L12 12.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4A1 1 0 0 1 12 15z" />
+          </svg>
+        </div>
+        {/* <section className="w-full py-12 md:py-24 lg:py-32" id="about">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold text-center">About</h2>
             <p className="mx-auto max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 mt-6 text-center">
@@ -59,9 +84,9 @@ export default function Component() {
               </p>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+      {/* <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <p className="text-xs text-gray-500 dark:text-gray-400">
           © John Doe. All rights reserved.
         </p>
@@ -73,7 +98,7 @@ export default function Component() {
             Privacy
           </Link>
         </nav>
-      </footer>
+      </footer> */}
     </div>
   );
 }
