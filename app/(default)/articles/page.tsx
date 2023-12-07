@@ -42,7 +42,7 @@ export default async function Homepage() {
                     </time>
                     <div className="flex-grow" />
                     <AdaptiveLink
-                      href={entry.redirect.value?.url || `/blog/${slug}`}
+                      href={entry.redirect.value?.url || `/articles/${slug}`}
                       className={cn(
                         "flex items-center gap-x-2 hover:underline",
                         "text-primary-600 dark:text-primary-500",

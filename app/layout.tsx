@@ -19,7 +19,14 @@ export const metadata: Metadata = {
     description: defaultMetadata.description,
     type: "website",
     siteName: defaultMetadata.title,
-    images: [`${defaultMetadata.url}/social.png`],
+    images: [
+      {
+        url: `${defaultMetadata.url}/social.png`,
+        width: 526,
+        height: 275,
+        type: "image/png",
+      },
+    ],
     url: defaultMetadata.url,
     locale: "en_US",
   },

@@ -16,7 +16,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: colors.amber,
+        primary: colors.sky,
       },
       fontFamily: {
         mono: [
