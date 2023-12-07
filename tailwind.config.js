@@ -1,7 +1,8 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["./app/**/*.{ts,tsx}", "./@/components/**/*.{ts,tsx}"],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
 
   theme: {
     container: {
@@ -12,6 +13,15 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        mono: [
+          "var(--font-geist-mono)",
+          "Geist Mono Variable",
+          "Geist Mono",
+          ...defaultTheme.fontFamily.mono,
+        ],
+        sans: ["Figtree Variable", "Figtree", ...defaultTheme.fontFamily.sans],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },

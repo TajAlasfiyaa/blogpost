@@ -1,5 +1,6 @@
 import { config, collection, fields } from "@keystatic/core";
 import { defaultMetadata } from "./site.config";
+import { homeSchema } from "./schema/home";
 const isVercelProd = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
 export default config({
   storage: isVercelProd
@@ -45,5 +46,8 @@ export default config({
         }),
       },
     }),
+  },
+  singletons: {
+    home: homeSchema,
   },
 });

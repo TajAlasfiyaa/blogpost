@@ -1,167 +1,94 @@
-"use client";
-import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import logo from "./logo.png";
-// import links from "../../config/links.json";
-import clsx from "clsx";
-import me from "../../public/assets/me.svg";
-
-import {
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaVoicemail,
-  FaYoutube,
-} from "react-icons/fa";
-import { ButtonGhost } from "./ButtonGhost";
 import { ModeToggle } from "./ui/ModeToggle";
-import { cn } from "@/lib/utils";
+
 const NavBar = () => {
-  const [toggle, setToggle] = useState(false);
   return (
-    <nav className=" border-gray-200 fixed  ">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link
-          href="/"
-          className="flex items-center space-x-1 rtl:space-x-reverse"
+    <nav className="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
+      <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
+        <button
+          data-tooltip-target="tooltip-home"
+          type="button"
+          className="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-50 dark:hover:bg-gray-800 group"
         >
-          <Image
-            width={80}
-            height={80}
-            src={me}
-            className="h-8 w-8"
-            alt="TajAlasfiyaa Logo"
-          />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            TajAlasfiyaa
-          </span>
-        </Link>
-        <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <ModeToggle />
+          <Link href="/">Home</Link>
+          <span className="sr-only">Home</span>
+        </button>
+        <div
+          id="tooltip-home"
+          role="tooltip"
+          className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+        >
+          <Link href="/">Home</Link>
+          <div className="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <button
+          data-tooltip-target="tooltip-wallet"
+          type="button"
+          className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group"
+        >
+          <Link href="/blog">Blog</Link>
+          <span className="sr-only">Wallet</span>
+        </button>
+        <div
+          id="tooltip-wallet"
+          role="tooltip"
+          className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+        >
+          Wallet
+          <div className="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <div className="flex items-center justify-center">
           <button
-            onClick={() => {
-              setToggle(!toggle);
-            }}
-            data-collapse-toggle="navbar-cta"
+            data-tooltip-target="tooltip-new"
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-cta"
-            aria-expanded="false"
+            className="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800"
           >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
-            </svg>
+            <ModeToggle />
+            <span className="sr-only">New item</span>
           </button>
         </div>
         <div
-          className={cn(
-            "items-center justify-between  w-full md:flex md:w-auto md:order-1",
-            toggle ? "" : "hidden"
-          )}
-          id="navbar-cta"
+          id="tooltip-new"
+          role="tooltip"
+          className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0   dark:border-gray-700">
-            {/* <li>
-              <a
-                href="#"
-                className="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500"
-                aria-current="page"
-              >
-                Home
-              </a>
-            </li> */}
-            {[
-              ["Home", "/"],
-              ["Blog", "/blog"],
-            ].map((link) => (
-              <li>
-                <ButtonGhost key={link[1]}>
-                  <Link
-                    className={clsx("text-xl font-semibold")}
-                    href={link[1]}
-                  >
-                    {link[0]}
-                  </Link>
-                </ButtonGhost>
-              </li>
-            ))}
-          </ul>
+          Create new item
+          <div className="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <button
+          data-tooltip-target="tooltip-settings"
+          type="button"
+          className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group"
+        >
+          Projects
+          <span className="sr-only">Settings</span>
+        </button>
+        <div
+          id="tooltip-settings"
+          role="tooltip"
+          className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+        >
+          Settings
+          <div className="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <button
+          data-tooltip-target="tooltip-profile"
+          type="button"
+          className="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-gray-50 dark:hover:bg-gray-800 group"
+        >
+          Contact
+          <span className="sr-only">Profile</span>
+        </button>
+        <div
+          id="tooltip-profile"
+          role="tooltip"
+          className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+        >
+          Profile
+          <div className="tooltip-arrow" data-popper-arrow></div>
         </div>
       </div>
     </nav>
   );
 };
-// const NavBar = () => {
-//   return (
-//     <div className="border-b-2  sticky backdrop-filter backdrop-blur-lg top-0 w-full z-10 justify-between border-gray-400 h-20 flex  items-center px-10 mb-3  gap-3 ">
-//       <div className="flex items-center gap-2 ">
-//         <div>
-//           <Image height={100} width={100} alt="website logo" src={logo} />
-//         </div>
-//         {/* Navgaition */}
-//         <div className="flex gap-1 text-2xl font-bold ">
-//           {[
-//             ["Home", "/"],
-//             ["Blog", "/blog"],
-//           ].map((link) => (
-//             <ButtonGhost key={link[1]}>
-//               <Link className={clsx("text-xl font-semibold")} href={link[1]}>
-//                 {link[0]}
-//               </Link>
-//             </ButtonGhost>
-//           ))}
-//         </div>
-//       </div>
-
-//       {/* Soical Icons */}
-//       <div className="flex gap-1 ">
-//         <Icon href={links.github} title="GitHub">
-//           <FaGithub />
-//         </Icon>
-//         <Icon href={links.twitter} title="Twitter">
-//           <FaTwitter />
-//         </Icon>
-//         <Icon href={links.linkedn} title="LinkedIn">
-//           <FaLinkedin />
-//         </Icon>
-//         <Icon href={links.youtube} title="YouTube">
-//           <FaYoutube />
-//         </Icon>
-//         <Icon href={links.email} title="Email">
-//           <FaVoicemail />
-//         </Icon>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const Icon = ({ children, href, title, className = "" }) => {
-//   return (
-//     <a
-//       title={title}
-//       target="_blank"
-//       href={href}
-//       className={clsx(
-//         "hover:fill-amber-600 hover:text-blue-700 text-xl ",
-//         className
-//       )}
-//     >
-//       {children}
-//     </a>
-//   );
-// };
 export default NavBar;
