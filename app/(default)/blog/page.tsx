@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { reader } from "../reader";
+import { getReader } from "../../../server/keystatic";
 import Image from "next/image";
 import NavBar from "@/components/NavBar";
 
 export default async function Homepage() {
-  const posts = await reader.collections.posts.all();
+  const posts = await getReader().collections.posts.all();
 
   return (
     <div>

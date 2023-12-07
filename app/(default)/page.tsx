@@ -1,12 +1,19 @@
 import Home from "@/components/Home";
 import { ContainerSection } from "@/components/container-section";
+import { getBasicRenderers } from "@/components/keystatic/basic-renderers";
+import { getHomeSingleton } from "@/server/keystatic";
+import { DocumentRenderer } from "@keystatic/core/renderer";
 export default async function Homepage() {
+  const query = await getHomeSingleton();
+  const content = await query.content();
+  const renderer = getBasicRenderers();
   return (
     <ContainerSection className="relative flex flex-col items-start">
       <h1 className="mb-2 text-4xl font-bold">TajAlasfiyaa Ishag</h1>
       <p className="mb-8 text-2xl">
         Software engineer specialized in frontend development
       </p>
+      <DocumentRenderer document={content} renderers={renderer} />
     </ContainerSection>
   );
 }

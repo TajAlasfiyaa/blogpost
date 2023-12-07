@@ -5,15 +5,16 @@ export const homeSchema = singleton({
   path: "content/home",
   entryLayout: "content",
   format: {
-    contentField: "contetn",
+    contentField: "content",
   },
   schema: {
     content: fields.document({
-      label: "content",
+      label: "Content",
       formatting: {
         inlineMarks: true,
         softBreaks: true,
       },
+      links: true,
     }),
   },
   previewUrl: `${process.env.APP_URL}`,
