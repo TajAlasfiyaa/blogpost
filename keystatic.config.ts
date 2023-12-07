@@ -1,6 +1,7 @@
 import { config, collection, fields } from "@keystatic/core";
 import { defaultMetadata } from "./site.config";
 import { homeSchema } from "./schema/home";
+import { articleSchema } from "./schema/articles";
 const isVercelProd = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
 export default config({
   storage: isVercelProd
@@ -19,6 +20,7 @@ export default config({
         kind: "local",
       },
   collections: {
+    articles: articleSchema,
     posts: collection({
       label: "Posts",
       slugField: "title",
