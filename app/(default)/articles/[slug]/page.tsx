@@ -46,15 +46,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: article.title,
     description: article.description,
+    twitter: {
+      card: "summary_large_image",
+      creator: defaultMetadata.x.creator,
+      title: article.title,
+      // creatorId: defaultMetadata.x.creatorId,
+      site: defaultMetadata.x.creator,
+      description: article.description,
+      images: [`${defaultMetadata.url}/api/opengraph/article?${search}`],
+    },
     openGraph: {
       title: article.title,
       description: article.description,
       url: `${defaultMetadata.url}/articles/${params.slug}`,
-      images: [
-        {
-          url: `${defaultMetadata.url}/api/opengraph/article?${search}`,
-        },
-      ],
+      images: [`${defaultMetadata.url}/api/opengraph/article?${search}`],
     },
     authors: [
       {
