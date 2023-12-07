@@ -1,9 +1,11 @@
+"use client";
 import { TooltipProvider } from "@/components/ui/tooltip";
+
 import "../styles.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/utils/ui";
-
+import { Navbar } from "@/components/navbar";
 export default function RootLayout({
   children,
 }: {

@@ -1,4 +1,4 @@
-import imageAvatar from "@/app/apple-icon.png";
+import imageAvatar from "@/public/assets/me.svg";
 import { defaultMetadata } from "@/site.config";
 import { cn } from "@/utils/ui";
 import Image from "next/image";
@@ -18,7 +18,7 @@ export function Navbar({ className, ...props }: Props) {
       className={cn(
         "container flex items-center gap-x-2 py-4 text-sm",
         "pointer-events-none [&>*]:pointer-events-auto",
-        className,
+        className
       )}
       {...props}
     >
@@ -27,7 +27,7 @@ export function Navbar({ className, ...props }: Props) {
         className={cn(
           "group overflow-hidden max-sm:hidden",
           "h-9 w-9 rounded-full border border-neutral-500/25 shadow-md",
-          "hover:bg-primary-500/50 bg-neutral-500/25 transition",
+          "hover:bg-primary-500/50 bg-neutral-500/25 transition"
         )}
         role="group"
       >
@@ -39,10 +39,7 @@ export function Navbar({ className, ...props }: Props) {
       </Link>
       <ul className={navbarContainerClassNames}>
         {routes.map((route, i) => (
-          <li
-            key={i}
-            className="max-sm:hidden"
-          >
+          <li key={i} className="max-sm:hidden">
             <NavItem {...route} />
           </li>
         ))}
