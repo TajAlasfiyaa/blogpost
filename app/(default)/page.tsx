@@ -1,6 +1,13 @@
 import Home from "@/components/Home";
+import { AdaptiveLink } from "@/components/adaptive-link";
 import { ContainerSection } from "@/components/container-section";
 import { getBasicRenderers } from "@/components/keystatic/basic-renderers";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { links } from "@/constants/links";
 import { getHomeSingleton } from "@/server/keystatic";
 import { DocumentRenderer } from "@keystatic/core/renderer";
 export default async function Homepage() {
@@ -14,6 +21,24 @@ export default async function Homepage() {
         Software engineer specialized in frontend development
       </p>
       <DocumentRenderer document={content} renderers={renderer} />
+      <ul className="[&_a:hover]:text-primary-600 dark:[&_a:hover]:text-primary-500 flex items-center gap-x-4">
+        {links.map(({ href, Icon, label }) => (
+          <li key={label}>
+            <Tooltip disableHoverableContent>
+              <TooltipTrigger asChild>
+                <AdaptiveLink href={href} rel="me">
+                  <Icon
+                    aria-label={label}
+                    aria-hidden="true"
+                    className="h-5 w-5"
+                  />
+                </AdaptiveLink>
+              </TooltipTrigger>
+              <TooltipContent sideOffset={8}>{label}</TooltipContent>
+            </Tooltip>
+          </li>
+        ))}
+      </ul>
     </ContainerSection>
   );
 }

@@ -1,3 +1,4 @@
+import { TooltipProvider } from "@/components/ui/tooltip";
 import "../styles.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
@@ -14,7 +15,7 @@ export default function RootLayout({
       enableSystem
       disableTransitionOnChange
     >
-      {children}
+      <TooltipProvider>{children}</TooltipProvider>
     </ThemeProvider>
   );
 }

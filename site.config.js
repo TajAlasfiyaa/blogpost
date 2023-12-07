@@ -22,7 +22,7 @@ const defaultMetadata = {
   url,
   //   bluesky: {
   //     actor: "did:plc:rue26duvigfk3zi5sselzwjc",
-  //     handle: "griko.bsky.social",
+  //     handle: "TajAlasfiyaa.bsky.social",
   //   },
   github: {
     username: "tajalasfiya",
@@ -33,4 +33,18 @@ const defaultMetadata = {
     // creatorId: "1702059533714309121",
   },
 };
+const customMetadata = {
+  blueskyUrl: `https://bsky.app/profile/}`,
+  cohostUrl: "https://cohost.org/TajAlasfiyaa",
+  emailUrl: `mailto:${defaultMetadata.email}`,
+  githubUrl: `https://github.com/${defaultMetadata.github.username}`,
+  linkedInUrl: "https://linkedin.com/in/TajAlasfiyaa",
+  keybaseUrl: "https://keybase.io/TajAlasfiyaa",
+  mastodonUrl: "https://mastodon.social/@TajAlasfiyaa",
+  matrixUrl: "https://matrix.to/#/@TajAlasfiyaa:matrix.org",
+  scheduleUrl: `https://nbr.st/schedule`,
+  xUrl: `https://x.com/${defaultMetadata.x.creator}`,
+};
+
 exports.defaultMetadata = defaultMetadata;
+exports.customMetadata = customMetadata;
