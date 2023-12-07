@@ -30,7 +30,7 @@ const defaultMetadata = {
   },
   x: {
     creator: "@tajalasiyaa",
-    // creatorId: "1702059533714309121",
+    creatorId: "888298632683933696",
   },
 };
 const customMetadata = {

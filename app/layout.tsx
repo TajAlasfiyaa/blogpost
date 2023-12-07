@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     creator: defaultMetadata.x.creator,
     title: defaultMetadata.title,
-    // creatorId: defaultMetadata.x.creatorId,
+    creatorId: defaultMetadata.x.creatorId,
     site: defaultMetadata.x.creator,
     description: defaultMetadata.description,
     images: [`${defaultMetadata.url}/social.png`],

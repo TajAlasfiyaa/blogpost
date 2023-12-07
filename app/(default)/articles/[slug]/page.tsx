@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       creator: defaultMetadata.x.creator,
       title: article.title,
-      // creatorId: defaultMetadata.x.creatorId,
+      creatorId: defaultMetadata.x.creatorId,
       site: defaultMetadata.x.creator,
       description: article.description,
       images: [`${defaultMetadata.url}/api/opengraph/article?${search}`],
