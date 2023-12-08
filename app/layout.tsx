@@ -1,5 +1,6 @@
 import Head from "next/head";
 import "@fontsource-variable/figtree/index.css";
+import { cookies, draftMode } from "next/headers";
 
 import { defaultMetadata } from "@/site.config";
 import { cn } from "@/utils/ui";
@@ -51,6 +52,8 @@ export const viewport: Viewport = {
   ],
 };
 export default function Layout({ children }: { children: ReactNode }) {
+  const { isEnabled } = draftMode();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -64,6 +67,14 @@ export default function Layout({ children }: { children: ReactNode }) {
         )}
       >
         {children}
+        {isEnabled && (
+          <div>
+            Draft mode ({cookies().get("ks-branch")?.value}){" "}
+            <form method="POST" action="/preview/end">
+              <button>End preview</button>
+            </form>
+          </div>
+        )}
       </body>
     </html>
   );
