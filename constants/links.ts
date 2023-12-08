@@ -14,10 +14,26 @@ import { customMetadata } from "@/site.config.js";
 import { CloudIcon, GithubIcon, LinkedinIcon } from "lucide-react";
 
 export const links = [
-  { href: customMetadata.blueskyUrl, Icon: CloudIcon, label: "Bluesky" },
-  { href: customMetadata.githubUrl, Icon: GithubIcon, label: "GitHub" },
-  { href: customMetadata.linkedInUrl, Icon: LinkedinIcon, label: "LinkedIn" },
-  { href: customMetadata.mastodonUrl, Icon: MastodonIcon, label: "Mastodon" },
+  {
+    href: customMetadata.blueskyUrl,
+    Icon: CloudIcon,
+    label: "Go to my Bluesky Account",
+  },
+  {
+    href: customMetadata.githubUrl,
+    Icon: GithubIcon,
+    label: "Go to my GitHub Account",
+  },
+  {
+    href: customMetadata.linkedInUrl,
+    Icon: LinkedinIcon,
+    label: "Go to my LinkedIn Account",
+  },
+  {
+    href: customMetadata.mastodonUrl,
+    Icon: MastodonIcon,
+    label: "Go to my Mastodon Account",
+  },
 ];
 
 export const wholeLinks = [
