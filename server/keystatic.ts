@@ -19,7 +19,7 @@ export const getReader = cache(() => {
     if (branch) {
       return createGitHubReader(keystaticConfig, {
         // Replace the below with your repo org an name
-        repo: "REPO_ORG/REPO_NAME",
+        repo: "tajalasfiyaa/blogpost",
         ref: branch,
         // Assuming an existing GitHub app
         token: cookies().get("keystatic-gh-access-token")?.value,
