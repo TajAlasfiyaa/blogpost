@@ -4,7 +4,7 @@ export const articleSchema = collection({
   label: "Articles",
   slugField: "title",
   path: "content/articles/*",
-  previewUrl: `/preview/start?branch={branch}&to=/posts/{slug}`,
+  previewUrl: `/preview/start?branch={branch}&to=/articles/{slug}`,
   entryLayout: "content",
   format: {
     contentField: "content",
