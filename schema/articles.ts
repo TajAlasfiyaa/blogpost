@@ -4,6 +4,7 @@ export const articleSchema = collection({
   label: "Articles",
   slugField: "title",
   path: "content/articles/*",
+  previewUrl: `/preview/start?branch={branch}&to=/posts/{slug}`,
   entryLayout: "content",
   format: {
     contentField: "content",
@@ -94,5 +95,5 @@ export const articleSchema = collection({
       layouts: [[1], [1, 1], [1, 2], [2, 1]],
     }),
   },
-  previewUrl: `${process.env.APP_URL}/articles/{slug}`,
+  // previewUrl: `${process.env.APP_URL}/articles/{slug}`,
 });
