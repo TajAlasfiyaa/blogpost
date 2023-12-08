@@ -20,24 +20,15 @@ export const metadata: Metadata = {
     description: defaultMetadata.description,
     type: "website",
     siteName: defaultMetadata.title,
-    images: [
-      {
-        url: `${defaultMetadata.url}/social.png`,
-
-        type: "image/png",
-      },
-    ],
+    images: [`${defaultMetadata.url}/social.png`],
     url: defaultMetadata.url,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     creator: defaultMetadata.x.creator,
-    title: defaultMetadata.title,
     creatorId: defaultMetadata.x.creatorId,
     site: defaultMetadata.x.creator,
-    description: defaultMetadata.description,
-    images: [`${defaultMetadata.url}/social.png`],
   },
   robots: {
     follow: true,
@@ -51,6 +42,7 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: light)", color: "#fafafa" },
   ],
 };
+
 export default function Layout({ children }: { children: ReactNode }) {
   const { isEnabled } = draftMode();
 

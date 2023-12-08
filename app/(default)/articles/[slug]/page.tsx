@@ -1,5 +1,5 @@
 import { DocumentRenderer } from "@keystatic/core/renderer";
-import { getArticle, getSortedArticles } from "@/server/keystatic";
+import { getArticle, getReader, getSortedArticles } from "@/server/keystatic";
 import { ContainerSection } from "@/components/container-section";
 import { notFound, redirect } from "next/navigation";
 import { Metadata } from "next";
@@ -62,7 +62,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 export default async function Page({ params }: { params: { slug: string } }) {
-  const article = await getArticle(params.slug).catch(() => notFound());
+  // const article = await getArticle(params.slug).catch(() => notFound());]
+  const article = await getReader().collections.articles.readOrThrow(
+    params.slug
+  );
   const document = await article.content();
   const renderers = getArticleRenderers();
 
