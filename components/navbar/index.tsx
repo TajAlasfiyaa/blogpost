@@ -9,6 +9,7 @@ import { NavItem } from "./nav-item";
 import { routes } from "./routes";
 import { navbarContainerClassNames } from "./styles";
 import { ThemeButton } from "./theme-button";
+import { TestButton } from "./test";
 
 type Props = ComponentPropsWithoutRef<"nav">;
 
@@ -25,7 +26,7 @@ export function Navbar({ className, ...props }: Props) {
       <Link
         href="/"
         className={cn(
-          "group overflow-hidden max-sm:hidden",
+          "group overflow-hidden ",
           "h-9 w-9 rounded-full border border-neutral-500/25 shadow-md",
           "hover:bg-primary-500/50 bg-neutral-500/25 transition"
         )}
@@ -37,18 +38,21 @@ export function Navbar({ className, ...props }: Props) {
           className="pointer-events-none"
         />
       </Link>
-      <ul className={navbarContainerClassNames}>
-        {routes.map((route, i) => (
-          <li key={i} className="max-sm:hidden">
-            <NavItem {...route} />
-          </li>
-        ))}
-        <li className="sm:hidden">
-          <MobileSheetButton />
-        </li>
-      </ul>
+      <span className="max-sm:hidden">
+        <ul className={navbarContainerClassNames}>
+          {routes.map((route, i) => (
+            <li key={i} className="max-sm:hidden">
+              <NavItem {...route} />
+            </li>
+          ))}
+          {/* <li className="sm:hidden">
+            <MobileSheetButton />
+          </li> */}
+        </ul>
+      </span>
       <div className={cn(navbarContainerClassNames, "px-2")}>
         <ThemeButton />
+        <TestButton className="sm:hidden" />
       </div>
     </nav>
   );
