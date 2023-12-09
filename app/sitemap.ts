@@ -2,34 +2,20 @@ import { getArticlesFeed } from "@/server/feed";
 import { getReader } from "@/server/keystatic";
 import { defaultMetadata } from "@/site.config";
 import { MetadataRoute } from "next";
+const routes = ["articles", "about", "projects", "links"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getReader().collections.articles.all();
   const site = articles.map(({ slug, entry }) => {
     return {
-      url: `${defaultMetadata.url}/${slug}`,
+      url: `${defaultMetadata.url}/articles/${slug}`,
       lastModified: entry.publishedAt,
     };
   });
-  return [
-    ...site,
-    {
-      url: "https://acme.com",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
-    },
-    {
-      url: "https://acme.com/about",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://acme.com/blog",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.5,
-    },
-  ];
+  const links = routes.map((slug: string) => {
+    return {
+      url: `${defaultMetadata.url}/${slug}`,
+    };
+  });
+  return [...site, ...links];
 }
