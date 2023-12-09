@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /keystatic/
+
+Sitemap: https://ta.sd/sitemap.xml
