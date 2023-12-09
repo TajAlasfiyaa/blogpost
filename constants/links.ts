@@ -11,28 +11,34 @@ import { MastodonIcon } from "@/components/icons/mastodon";
 import { MatrixIcon } from "@/components/icons/matrix";
 import { XIcon } from "@/components/icons/x";
 import { customMetadata } from "@/site.config.js";
-import { CloudIcon, GithubIcon, LinkedinIcon } from "lucide-react";
+import {
+  CloudIcon,
+  FacebookIcon,
+  GithubIcon,
+  LinkedinIcon,
+  TwitterIcon,
+} from "lucide-react";
 
 export const links = [
   {
-    href: customMetadata.blueskyUrl,
-    Icon: CloudIcon,
-    label: "Go to my Bluesky Account",
+    href: customMetadata.xUrl,
+    Icon: TwitterIcon,
+    label: "X (formerly Twitter)",
   },
   {
     href: customMetadata.githubUrl,
     Icon: GithubIcon,
-    label: "Go to my GitHub Account",
+    label: "GitHub Account",
   },
   {
     href: customMetadata.linkedInUrl,
     Icon: LinkedinIcon,
-    label: "Go to my LinkedIn Account",
+    label: "LinkedIn Account",
   },
   {
-    href: customMetadata.mastodonUrl,
-    Icon: MastodonIcon,
-    label: "Go to my Mastodon Account",
+    href: customMetadata.facebookUrl,
+    Icon: FacebookIcon,
+    label: "Facebook Account",
   },
 ];
 

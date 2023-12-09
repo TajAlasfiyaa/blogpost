@@ -33,7 +33,7 @@ export default async function Homepage() {
           <li key={label}>
             <Tooltip disableHoverableContent>
               <TooltipTrigger asChild>
-                <AdaptiveLink href={href} rel="me">
+                <AdaptiveLink aria-label={label} href={href} rel="me">
                   <Icon
                     aria-label={label}
                     aria-hidden="true"

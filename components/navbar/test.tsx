@@ -25,17 +25,17 @@ export function TestButton({ className, ...props }: Props) {
 
   const pathname = usePathname();
   useEffect(() => {
-    pathname == "/" ? setNav("/menu") : setNav(pathname);
+    pathname == "/" ? setNav("Menu") : setNav(pathname);
   }, [pathname]);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
           className={cn(navbarItemClassNames, className)}
-          aria-label="Change theme"
+          aria-label="Menu"
           {...props}
         >
-          {nav}
+          Menu
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={8}>

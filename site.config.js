@@ -42,8 +42,9 @@ const customMetadata = {
   keybaseUrl: "https://keybase.io/TajAlasfiyaa",
   mastodonUrl: "https://mastodon.social/@TajAlasfiyaa",
   matrixUrl: "https://matrix.to/#/@TajAlasfiyaa:matrix.org",
-  scheduleUrl: `https://nbr.st/schedule`,
+  scheduleUrl: `https://cal.com/tajalasfiyaa/helloworld`,
   xUrl: `https://x.com/${defaultMetadata.x.creator}`,
+  facebookUrl: "https://facebook.com/TajAlasfiyaa",
 };
 
 exports.defaultMetadata = defaultMetadata;

@@ -10,6 +10,7 @@ import { routes } from "./routes";
 import { navbarContainerClassNames } from "./styles";
 import { ThemeButton } from "./theme-button";
 import { TestButton } from "./test";
+import { Separator } from "../ui/separator";
 
 type Props = ComponentPropsWithoutRef<"nav">;
 
@@ -30,7 +31,7 @@ export function Navbar({ className, ...props }: Props) {
           "h-9 w-9 rounded-full border border-neutral-500/25 shadow-md",
           "hover:bg-primary-500/50 bg-neutral-500/25 transition"
         )}
-        role="group"
+        aria-label="Go to home"
       >
         <Image
           src={imageAvatar}
@@ -52,6 +53,10 @@ export function Navbar({ className, ...props }: Props) {
       </span>
       <div className={cn(navbarContainerClassNames, "px-2")}>
         <ThemeButton />
+        <Separator
+          className="w-1 h-full bg-[#171717] dark:bg-neutral-300 sm:hidden"
+          orientation="vertical"
+        />
         <TestButton className="sm:hidden" />
       </div>
     </nav>

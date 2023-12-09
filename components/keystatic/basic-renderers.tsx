@@ -7,7 +7,11 @@ export function getBasicRenderers(): DocumentRendererProps["renderers"] {
       //
     },
     inline: {
-      link: AdaptiveLink,
+      link: ({ children, href }) => (
+        <AdaptiveLink href={href} className="underline">
+          {children}
+        </AdaptiveLink>
+      ),
     },
   };
 }
