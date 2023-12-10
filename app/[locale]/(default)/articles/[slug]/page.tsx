@@ -62,6 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 export default async function Page({ params }: { params: { slug: string } }) {
+  console.log("prams", params.slug);
   // const article = await getArticle(params.slug).catch(() => notFound());]
   const article = await getReader().collections.articles.readOrThrow(
     params.slug
@@ -80,8 +81,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
             className="mb-8 aspect-video w-full max-w-screen-sm rounded bg-neutral-500 object-cover"
           />
         )}
-        <h1 className="max-w-screen-sm text-4xl font-bold">{article.title}</h1>
-        <p className="max-w-screen-sm space-y-4 text-neutral-700 dark:text-neutral-300">
+        <h1 dir="auto" className="max-w-screen-sm text-4xl font-bold">
+          {article.title}
+        </h1>
+        <p
+          dir="auto"
+          className="max-w-screen-sm space-y-4 text-neutral-700 dark:text-neutral-300"
+        >
           {article.description}
         </p>
         <div className="flex items-center gap-x-2 text-sm text-neutral-700 dark:text-neutral-300">

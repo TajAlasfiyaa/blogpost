@@ -7,11 +7,14 @@ const APP_URL =
     process.env.PORT || 3000
   }`;
 
-/**
- * @type {import("next").NextConfig}
- * @see https://nextjs.org/docs/app/api-reference/next-config-js
- */
-const nextConfig = {
+// /**
+//  * @type {import("next").NextConfig}
+//  * @see https://nextjs.org/docs/app/api-reference/next-config-js
+//  */
+
+const withNextIntl = require("next-intl/plugin")("./i18n.ts");
+
+module.exports = withNextIntl({
   env: {
     APP_URL,
   },
@@ -59,6 +62,4 @@ const nextConfig = {
     });
     return config;
   },
-};
-
-module.exports = nextConfig;
+});

@@ -16,9 +16,11 @@ import { usePathname } from "next/navigation";
 import { AdaptiveLink } from "../adaptive-link";
 import { routes } from "./routes";
 
-type Props = ComponentPropsWithoutRef<"button">;
+type Props = ComponentPropsWithoutRef<"button"> & {
+  locale?: "en" | "ar";
+};
 const test = ["About", "Artcles", "Projects"];
-export function TestButton({ className, ...props }: Props) {
+export function TestButton({ className, locale = "en", ...props }: Props) {
   const [nav, setNav] = useState("About");
   const [state, setState] = useState(() => false);
   const close = () => setState(false);
@@ -40,7 +42,7 @@ export function TestButton({ className, ...props }: Props) {
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={8}>
         <DropdownMenuRadioGroup value={nav}>
-          {routes.map((route, i) => (
+          {routes[locale].map((route, i) => (
             <DropdownMenuRadioItem key={i} value={route.children}>
               <AdaptiveLink
                 {...route}
