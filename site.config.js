@@ -33,6 +33,28 @@ const defaultMetadata = {
     creatorId: "888298632683933696",
   },
 };
+const defaultMetadataLocale = {
+  title: { en: "TajAlasfiyaa", ar: "تاج الاصفياء" },
+  description: {
+    en: "Software engineer specialized in frontend development",
+    ar: "مهندس برمجيات متخصص في تطوير واجهات المستخدم",
+  },
+  email: "tajalasfiyaa@gmail.com",
+  domain,
+  url,
+  //   bluesky: {
+  //     actor: "did:plc:rue26duvigfk3zi5sselzwjc",
+  //     handle: "TajAlasfiyaa.bsky.social",
+  //   },
+  github: {
+    username: "tajalasfiya",
+    repository: "blogpost",
+  },
+  x: {
+    creator: "@tajalasiyaa",
+    creatorId: "888298632683933696",
+  },
+};
 const customMetadata = {
   blueskyUrl: `https://bsky.app/profile/}`,
   cohostUrl: "https://cohost.org/TajAlasfiyaa",
@@ -48,4 +70,5 @@ const customMetadata = {
 };
 
 exports.defaultMetadata = defaultMetadata;
+exports.defaultMetadataLocale = defaultMetadataLocale;
 exports.customMetadata = customMetadata;

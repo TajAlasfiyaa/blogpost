@@ -3,7 +3,7 @@ import { collection, fields } from "@keystatic/core";
 export const articleSchema = collection({
   label: "Articles",
   slugField: "title",
-  path: "content/articles/*",
+  path: "content/articles/**",
   previewUrl: `/preview/start?branch={branch}&to=/articles/{slug}`,
   entryLayout: "content",
   format: {
