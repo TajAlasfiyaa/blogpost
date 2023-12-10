@@ -1,6 +1,6 @@
 import { ContainerSection } from "@/components/container-section";
 import { getBasicRenderers } from "@/components/keystatic/basic-renderers";
-import { Polaroid } from "@/components/polariod";
+// import { Polaroid } from "@/components/polaroid";
 import { getReader } from "@/server/keystatic";
 import { DocumentRenderer } from "@keystatic/core/renderer";
 import { Metadata } from "next";
@@ -15,7 +15,7 @@ export default async function Page() {
   const renderers = getBasicRenderers();
   return (
     <ContainerSection enableNavShadow>
-      <Polaroid className="mb-16 lg:float-right lg:mb-8 lg:ml-8" />
+      {/* <Polaroid className="mb-16 lg:float-right lg:mb-8 lg:ml-8" /> */}
       <article className="prose-primary prose pb-20 dark:prose-invert [&_a:hover]:underline [&_a]:no-underline">
         <DocumentRenderer document={document} renderers={renderers} />
       </article>
