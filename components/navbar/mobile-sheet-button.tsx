@@ -8,9 +8,15 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { routes } from "./routes";
 import { navbarItemClassNames } from "./styles";
 
-type Props = ComponentPropsWithoutRef<"button">;
+type Props = ComponentPropsWithoutRef<"button"> & {
+  locale?: "en" | "ar";
+};
 
-export function MobileSheetButton({ className, ...props }: Props) {
+export function MobileSheetButton({
+  className,
+  locale = "en",
+  ...props
+}: Props) {
   const [state, setState] = useState(() => false);
   const close = () => setState(false);
 
@@ -18,42 +24,33 @@ export function MobileSheetButton({ className, ...props }: Props) {
   useEffect(() => close(), [pathname]);
 
   return (
-    <Sheet
-      open={state}
-      onOpenChange={setState}
-    >
+    <Sheet open={state} onOpenChange={setState}>
       <SheetTrigger asChild>
-        <button
-          className={cn(navbarItemClassNames, className)}
-          {...props}
-        >
+        <button className={cn(navbarItemClassNames, className)} {...props}>
           Open Menu
         </button>
       </SheetTrigger>
-      <SheetContent
-        side="left"
-        className="w-full !border-none !bg-opacity-90"
-      >
+      <SheetContent side="left" className="w-full !border-none !bg-opacity-90">
         <ul
           className={cn(
             "h-full w-full",
             "flex flex-col items-center justify-center text-center",
-            "text-xl [&_a]:block [&_a]:p-4",
+            "text-xl [&_a]:block [&_a]:p-4"
           )}
         >
           <li>
-            <AdaptiveLink
-              href="/"
-              onClick={close}
-            >
+            <AdaptiveLink href="/" onClick={close}>
               Home
             </AdaptiveLink>
           </li>
-          {routes.map((route, i) => (
+          {routes[locale].map((route, i) => (
             <li key={i}>
               <AdaptiveLink
                 {...route}
-                className={cn(pathname.startsWith(route.href) && "!text-primary-600 dark:!text-primary-500")}
+                className={cn(
+                  pathname.startsWith(route.href) &&
+                    "!text-primary-600 dark:!text-primary-500"
+                )}
                 onClick={close}
               />
             </li>

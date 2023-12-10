@@ -30,6 +30,7 @@ export const getReader = cache(() => {
   return createReader(process.cwd(), keystaticConfig);
 });
 export const getHomeSingleton = cache(getReader().singletons.home.readOrThrow);
+
 export const getArticle = cache(getReader().collections.articles.readOrThrow);
 export const getSortedArticles = cache(async () => {
   const reader = getReader();
