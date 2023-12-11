@@ -1,4 +1,3 @@
-import Head from "next/head";
 import "@fontsource-variable/figtree/index.css";
 import { cookies, draftMode } from "next/headers";
 
