@@ -4,9 +4,11 @@ import { cache } from "react";
 export const getFonts = cache(async () => {
   const [sans, sansBold] = await Promise.all([
     loadBuffer(
-      new URL("../public/assets/Figtree-Regular.ttf", import.meta.url)
+      new URL("../../public/assets/Figtree-Regular.ttf", import.meta.url)
     ),
-    loadBuffer(new URL("../public/assets/Figtree-Bold.ttf", import.meta.url)),
+    loadBuffer(
+      new URL("../../public/assets/Figtree-Bold.ttf", import.meta.url)
+    ),
   ]);
   const fonts: SatoriOptions["fonts"] = [
     { name: "Figtree", data: sans, style: "normal", weight: 400 },

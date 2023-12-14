@@ -22,8 +22,10 @@ export default function ChangeLocale({
   return (
     <div>
       <select onChange={handleLocaleChange} value={locale}>
-        {availableLanguageTags.map((lang) => (
-          <option value={lang}>{lang == "ar" ? "العربية" : "english"}</option>
+        {availableLanguageTags.map((lang, i) => (
+          <option key={i} value={lang}>
+            {lang == "ar" ? "العربية" : "english"}
+          </option>
         ))}
       </select>
     </div>

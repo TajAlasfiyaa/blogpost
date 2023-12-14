@@ -22,16 +22,24 @@ function getLocale(request: NextRequest) {
 }
 export function middleware(request: NextRequest) {
   const locale = getLocale(request);
-  console.log("local3", locale);
   const cookie = request.cookies.get("language")?.value;
-  const headers = new Headers(request.headers);
-  const response = NextResponse.next();
   if (cookie) {
-    response.headers.set("x-language-tag", cookie);
-    return response;
+    const headers = new Headers(request.headers);
+    headers.set("x-language-tag", cookie);
+    return NextResponse.next({
+      request: {
+        headers,
+      },
+    });
   }
-  response.headers.set("x-language-tag", locale);
-  response.cookies.set("language", locale);
+  const headers = new Headers(request.headers);
+  headers.set("x-language-tag", locale);
+  const response = NextResponse.next({
+    request: {
+      headers,
+    },
+  });
+  response.cookies.set("language", locale, { maxAge: 99999999 });
   return response;
 }
 
@@ -44,6 +52,9 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    // "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    "/",
+    "/articles",
+    "/aricles/:path*",
   ],
 };
