@@ -5,7 +5,11 @@ type Props = ComponentProps<"section"> & {
   enableNavShadow?: boolean;
 };
 
-export function ContainerSection({ enableNavShadow = false, className, ...props }: Props) {
+export function ContainerSection({
+  enableNavShadow = false,
+  className,
+  ...props
+}: Props) {
   return (
     <section
       className={cn(
@@ -17,7 +21,7 @@ export function ContainerSection({ enableNavShadow = false, className, ...props 
               "before:pointer-events-none",
             ]
           : null,
-        className,
+        className
       )}
       {...props}
     />

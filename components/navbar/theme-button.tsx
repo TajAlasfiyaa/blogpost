@@ -31,16 +31,9 @@ export function ThemeButton({ className, ...props }: Props) {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={8}>
-        <DropdownMenuRadioGroup
-          value={theme}
-          onValueChange={setTheme}
-        >
+        <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
           {themes.map((t) => (
-            <DropdownMenuRadioItem
-              key={t}
-              value={t}
-              className="capitalize"
-            >
+            <DropdownMenuRadioItem key={t} value={t} className="capitalize">
               <DropdownMenuItemIndicator />
               {t}
             </DropdownMenuRadioItem>

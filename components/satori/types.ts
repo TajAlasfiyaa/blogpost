@@ -12,7 +12,9 @@ export const articleLayoutSchema = z.object({
 
 export type ArticleLayoutProps = z.infer<typeof articleLayoutSchema>;
 
-export function getArticleLayoutSearchParams(usp: URLSearchParams): ArticleLayoutProps {
+export function getArticleLayoutSearchParams(
+  usp: URLSearchParams
+): ArticleLayoutProps {
   const encoded = usp.get("encoded");
   if (encoded) {
     try {
@@ -31,10 +33,15 @@ export function getArticleLayoutSearchParams(usp: URLSearchParams): ArticleLayou
   };
 }
 
-export function getArticleLayoutSearchString(props: ArticleLayoutProps, { encoded = false } = {}): string {
+export function getArticleLayoutSearchString(
+  props: ArticleLayoutProps,
+  { encoded = false } = {}
+): string {
   const { title, description, imgSrc = "", path = "" } = props;
   if (encoded) {
-    return `encoded=${Buffer.from(JSON.stringify({ title, description, imgSrc, path })).toString("base64")}`;
+    return `encoded=${Buffer.from(
+      JSON.stringify({ title, description, imgSrc, path })
+    ).toString("base64")}`;
   }
   return toSearchString({ title, description, imgSrc, path });
 }

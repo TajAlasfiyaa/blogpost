@@ -6,6 +6,8 @@ import { cn } from "@/utils/ui";
 import { GeistMono } from "geist/font/mono";
 import { Metadata, Viewport } from "next";
 import { ReactNode } from "react";
+import LanguageProvider from "@/components/lib/LanguageProvider";
+import { languageTag } from "@/src/paraglide/runtime";
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultMetadata.url),
@@ -46,27 +48,29 @@ export default function Layout({ children }: { children: ReactNode }) {
   const { isEnabled } = draftMode();
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
-      <body
-        className={cn(
-          "overflow-y-scroll font-sans antialiased",
-          "relative flex min-h-screen flex-col items-stretch",
-          "bg-neutral-50 dark:bg-neutral-900",
-          "text-neutral-900 dark:text-neutral-50",
-          GeistMono.variable
-        )}
-      >
-        {children}
-        {isEnabled && (
-          <div>
-            Draft mode ({cookies().get("ks-branch")?.value}){" "}
-            <form method="POST" action="/preview/end">
-              <button>End preview</button>
-            </form>
-          </div>
-        )}
-      </body>
-    </html>
+    <LanguageProvider>
+      <html lang={languageTag()} suppressHydrationWarning>
+        <head />
+        <body
+          className={cn(
+            "overflow-y-scroll font-sans antialiased",
+            "relative flex min-h-screen flex-col items-stretch",
+            "bg-neutral-50 dark:bg-neutral-900",
+            "text-neutral-900 dark:text-neutral-50",
+            GeistMono.variable
+          )}
+        >
+          {children}
+          {isEnabled && (
+            <div>
+              Draft mode ({cookies().get("ks-branch")?.value}){" "}
+              <form method="POST" action="/preview/end">
+                <button>End preview</button>
+              </form>
+            </div>
+          )}
+        </body>
+      </html>
+    </LanguageProvider>
   );
 }
