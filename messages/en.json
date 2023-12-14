@@ -1,0 +1,11 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"currentLanguageTag": "The current language tag is \"{languageTag}\".",
+	"greeting": "Welcome {name}! You have {count} messages.",
+	"language": "change language to \"de\"",
+	"test": "test ",
+	"t": "test",
+	"changeLocale": "🇺🇸 English",
+	"default_title": "TajAlasfiyaa",
+	"home_name": "TajAlasfiyaa Ishag"
+}

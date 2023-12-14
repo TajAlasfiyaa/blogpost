@@ -14,7 +14,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*","./src/*"]
     },
     "plugins": [{ "name": "next" }],
     "resolveJsonModule": true,

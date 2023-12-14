@@ -1,3 +1,4 @@
+import ChangeLocale from "@/components/ChangeLocale";
 import { AdaptiveLink } from "@/components/adaptive-link";
 import { ContainerSection } from "@/components/container-section";
 import { getBasicRenderers } from "@/components/keystatic/basic-renderers";
@@ -8,18 +9,22 @@ import {
 } from "@/components/ui/tooltip";
 import { links } from "@/constants/links";
 import { getHomeSingleton } from "@/server/keystatic";
+import { languageTag } from "@/src/paraglide/runtime";
 import { cn } from "@/utils/ui";
 import { DocumentRenderer } from "@keystatic/core/renderer";
+import * as m from "@/paraglide/messages";
+
 export default async function Homepage() {
   const query = await getHomeSingleton();
   const content = await query.content();
   const renderer = getBasicRenderers();
   return (
     <ContainerSection className="relative flex flex-col items-start">
-      <h1 className="mb-2 text-4xl font-bold">TajAlasfiyaa Ishag</h1>
+      <h1 className="mb-2 text-4xl font-bold">{m.home_name()}</h1>
       <p className="mb-8 text-2xl">
         Software engineer specialized in frontend development
       </p>
+      <ChangeLocale locale={languageTag()} />
       <div
         className={cn(
           "mb-16 max-w-screen-sm space-y-4 text-neutral-700 dark:text-neutral-300",

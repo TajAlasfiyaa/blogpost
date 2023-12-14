@@ -8,12 +8,13 @@ import { Metadata, Viewport } from "next";
 import { ReactNode } from "react";
 import LanguageProvider from "@/components/lib/LanguageProvider";
 import { languageTag } from "@/src/paraglide/runtime";
+import * as m from "@/paraglide/messages";
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultMetadata.url),
   title: {
-    template: `%s ⋅ ${defaultMetadata.title}`,
-    absolute: defaultMetadata.title,
+    template: `%s ⋅ ${m.default_title()}`,
+    absolute: m.default_title(),
   },
   description: defaultMetadata.description,
   openGraph: {
@@ -46,10 +47,10 @@ export const viewport: Viewport = {
 
 export default function Layout({ children }: { children: ReactNode }) {
   const { isEnabled } = draftMode();
-
+  const dir = languageTag() == "ar" ? "rtl" : "ltr";
   return (
     <LanguageProvider>
-      <html lang={languageTag()} suppressHydrationWarning>
+      <html lang={languageTag()} dir={dir} suppressHydrationWarning>
         <head />
         <body
           className={cn(

@@ -1,9 +1,10 @@
 import { languageTag, setLanguageTag } from "@/src/paraglide/runtime";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { ClientLanguageProvider } from "./ClientLanguageProvider";
 
 //This only needs to be called once, so it's fine to do it here
 setLanguageTag(() => {
+  // console.log("cookies", cookies().get("language"));
   return headers().get("x-language-tag") as any;
 });
 

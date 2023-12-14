@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getReader, getSortedArticles } from "../../../server/keystatic";
+import { getReader, getSortedArticles } from "@/server/keystatic";
 import Image from "next/image";
 import { ContainerSection } from "@/components/container-section";
 import { cn } from "@/utils/ui";

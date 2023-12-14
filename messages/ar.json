@@ -1,0 +1,11 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"currentLanguageTag": "Der aktuelle Sprachtag ist \"{languageTag}\".",
+	"greeting": "Hallo {name}! Du hast {count} Nachrichten.",
+	"language": "change to de",
+	"test": "noono",
+	"t": "here we go",
+	"changeLocale": "ar العربية",
+	"default_title": "تاج الاصفياء",
+	"home_name": "تاج الاصفياء اسحاق"
+}
