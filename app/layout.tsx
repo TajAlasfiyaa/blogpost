@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(defaultMetadata.url),
   title: {
     template: `%s ⋅ ${defaultMetadata.title}`,
-    absolute: defaultMetadata.title,
+    absolute: defaultMetadata.title + " | تاج الاصفياء",
   },
   description: defaultMetadata.description,
   openGraph: {

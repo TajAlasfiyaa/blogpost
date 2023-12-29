@@ -1,8 +1,8 @@
 import { config, collection, fields } from "@keystatic/core";
 import { defaultMetadata } from "./site.config";
-import { homeSchema } from "./schema/home";
-import { articleSchema } from "./schema/articles";
-import { aboutSchema } from "./schema/about";
+import { homeSchema } from "@/schema/home";
+import { articleSchema } from "@/schema/articles";
+import { aboutSchema } from "@/schema/about";
 const isVercelProd = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
 export default config({
   storage: isVercelProd

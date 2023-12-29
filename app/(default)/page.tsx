@@ -46,6 +46,16 @@ export default async function Homepage() {
           </li>
         ))}
       </ul>
+      <div
+        dir="rtl"
+        className="mb-2 
+       "
+      >
+        <h2 className="text-3xl ">تاج الاصفياء اسحاق محمود</h2>
+        <br />
+        طالب هندسة كهربائية بجامعة السودان للعلوم والتكنولجيا مهتم بالتكنولجيا
+        متخصص في مجال تطوير الويب
+      </div>
     </ContainerSection>
   );
 }

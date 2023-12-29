@@ -13,7 +13,8 @@ export default function RootLayout({
       <main
         className={cn(
           "relative flex-grow overflow-x-hidden",
-          "before:fixed before:left-0 before:top-0 before:z-[-1] before:h-full before:w-full"
+          "before:fixed before:left-0 before:top-0 before:z-[-1] before:h-full before:w-full",
+          cnn
         )}
       >
         {children}
