@@ -25,6 +25,11 @@ const nextConfig = {
         destination: "/api/opengraph/article",
         permanent: false,
       },
+      {
+         source: "/wa",
+        destination: "https://wa.me/249967974940",
+        permanent: true,
+      },
       //
     ];
 
