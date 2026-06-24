@@ -52,6 +52,21 @@ const nextConfig = {
       source: "/.well-known/security.txt",
       destination: "/security.txt",
     },
+    {
+      source: "/.well-known/api-catalog",
+      destination: "/api-catalog",
+    },
+  ],
+  headers: async () => [
+    {
+      source: "/",
+      headers: [
+        {
+          key: "Link",
+          value: '</.well-known/api-catalog>; rel="api-catalog"',
+        },
+      ],
+    },
   ],
   swcMinify: true,
   trailingSlash: false,
