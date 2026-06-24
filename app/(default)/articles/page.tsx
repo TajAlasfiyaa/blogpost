@@ -19,7 +19,7 @@ export default async function Homepage() {
   return (
     <ContainerSection className="relative space-y-4" enableNavShadow>
       <div>
-        <h1 className="max-w-screen-sm text-4xl font-bold">Psosts</h1>
+        <h1 className="max-w-screen-sm text-4xl font-bold">Articles</h1>
         <p className="max-w-screen-sm space-y-4 text-neutral-700 dark:text-neutral-300">
           All of my long-form thoughts on programming and probably about life,
           collected in chronological order.

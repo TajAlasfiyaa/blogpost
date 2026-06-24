@@ -3,6 +3,7 @@ import { defaultMetadata } from "./site.config";
 import { homeSchema } from "@/schema/home";
 import { articleSchema } from "@/schema/articles";
 import { aboutSchema } from "@/schema/about";
+import { projectSchema } from "@/schema/projects";
 const isVercelProd = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
 export default config({
   storage: isVercelProd
@@ -22,6 +23,7 @@ export default config({
       },
   collections: {
     articles: articleSchema,
+    projects: projectSchema,
   },
   singletons: {
     home: homeSchema,

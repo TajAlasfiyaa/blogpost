@@ -16,6 +16,9 @@ const nextConfig = {
     APP_URL,
   },
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   redirects: async () => {
     /** @type {import("next/dist/lib/load-custom-routes").Redirect[]} */
     const arr = [

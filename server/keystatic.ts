@@ -44,3 +44,13 @@ export const getSortedArticles = cache(async () => {
   });
   return sortedArticles;
 });
+export const getSortedProjects = cache(async () => {
+  const reader = getReader();
+  const projects = await reader.collections.projects.all();
+  const sortedProjects = projects.sort((a, b) => {
+    const aOrder = a.entry.order ?? 99;
+    const bOrder = b.entry.order ?? 99;
+    return aOrder - bOrder;
+  });
+  return sortedProjects;
+});
