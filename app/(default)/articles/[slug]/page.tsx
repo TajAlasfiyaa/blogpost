@@ -12,6 +12,7 @@ import { CalendarIcon } from "lucide-react";
 import { formatLongDate } from "@/utils/intl";
 import { cn } from "@/utils/ui";
 import { TopScroller } from "@/components/top-scroller";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/json-ld";
 
 interface Props {
   params: {
@@ -38,6 +39,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: article.title,
     description: article.description,
+    alternates: {
+      canonical: `${defaultMetadata.url}/articles/${params.slug}`,
+    },
     twitter: {
       card: "summary_large_image",
       creator: defaultMetadata.x.creator,
@@ -62,7 +66,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 export default async function Page({ params }: { params: { slug: string } }) {
-  // const article = await getArticle(params.slug).catch(() => notFound());]
   const article = await getReader().collections.articles.readOrThrow(
     params.slug
   );
@@ -71,7 +74,23 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <ContainerSection className="relative space-y-4" enableNavShadow>
+      <ArticleJsonLd
+        title={article.title}
+        description={article.description}
+        slug={params.slug}
+        publishedAt={article.publishedAt}
+        updatedAt={article.updatedAt}
+        cover={article.cover}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "الرئيسية", url: defaultMetadata.url },
+          { name: "المقالات", url: `${defaultMetadata.url}/articles` },
+          { name: article.title, url: `${defaultMetadata.url}/articles/${params.slug}` },
+        ]}
+      />
       <div className="m-auto  prose prose-xl dark:prose-invert ">
+
         {article.cover && (
           // eslint-disable-next-line @next/next/no-img-element
           <img

@@ -4,10 +4,21 @@ import { cn } from "@/utils/ui";
 import { ExternalLinkIcon, Code2Icon } from "lucide-react";
 import { AdaptiveLink } from "@/components/adaptive-link";
 import { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/json-ld";
+import { defaultMetadata } from "@/site.config";
 
 export const metadata: Metadata = {
-  title: "Projects",
-  description: "A showcase of web applications, wikis, and tools built for the community.",
+  title: "المشاريع",
+  description: "معرض للمشاريع البرمجية وتطبيقات الويب والأدوات الخدمية التي قمت بتطويرها وتصميمها لخدمة المجتمع التقني والتعليمي.",
+  alternates: {
+    canonical: `${defaultMetadata.url}/projects`,
+  },
+  openGraph: {
+    title: `المشاريع | ${defaultMetadata.nameAr}`,
+    description: "معرض للمشاريع البرمجية وتطبيقات الويب والأدوات الخدمية التي قمت بتطويرها وتصميمها لخدمة المجتمع التقني والتعليمي.",
+    url: `${defaultMetadata.url}/projects`,
+    locale: "ar_SD",
+  },
 };
 
 export default async function ProjectsPage() {
@@ -15,6 +26,13 @@ export default async function ProjectsPage() {
 
   return (
     <ContainerSection className="relative space-y-6" enableNavShadow>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "الرئيسية", url: defaultMetadata.url },
+          { name: "المشاريع", url: `${defaultMetadata.url}/projects` },
+        ]}
+      />
+
       <div>
         <h1 className="max-w-screen-sm text-4xl font-bold">Projects</h1>
         <p className="max-w-screen-sm mt-2 text-neutral-700 dark:text-neutral-300">

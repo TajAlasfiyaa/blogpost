@@ -7,19 +7,36 @@ import { ArrowRightIcon, CalendarIcon, ExternalLinkIcon } from "lucide-react";
 import { formatLongDate } from "@/utils/intl";
 import { AdaptiveLink } from "@/components/adaptive-link";
 import { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/json-ld";
+import { defaultMetadata } from "@/site.config";
 
 export const metadata: Metadata = {
-  title: "Articles",
-  description: "Writing on software development and random personal tidbits.",
+  title: "المقالات",
+  description: "أفكار ومقالات تقنية يكتبها تاج الأصفياء إسحاق حول تطوير الويب وتطبيقات الذكاء الاصطناعي ومواضيع برمجية متنوعة.",
+  alternates: {
+    canonical: `${defaultMetadata.url}/articles`,
+  },
+  openGraph: {
+    title: `المقالات | ${defaultMetadata.nameAr}`,
+    description: "أفكار ومقالات تقنية يكتبها تاج الأصفياء إسحاق حول تطوير الويب وتطبيقات الذكاء الاصطناعي ومواضيع برمجية متنوعة.",
+    url: `${defaultMetadata.url}/articles`,
+    locale: "ar_SD",
+  },
 };
 
 export default async function Homepage() {
-  // const posts = await getReader().collections.articles.all();
   const articles = await getSortedArticles();
   return (
     <ContainerSection className="relative space-y-4" enableNavShadow>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "الرئيسية", url: defaultMetadata.url },
+          { name: "المقالات", url: `${defaultMetadata.url}/articles` },
+        ]}
+      />
       <div>
         <h1 className="max-w-screen-sm text-4xl font-bold">Articles</h1>
+
         <p className="max-w-screen-sm space-y-4 text-neutral-700 dark:text-neutral-300">
           All of my long-form thoughts on programming and probably about life,
           collected in chronological order.

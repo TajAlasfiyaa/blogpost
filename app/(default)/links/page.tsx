@@ -3,10 +3,21 @@ import { ContainerSection } from "@/components/container-section";
 import { wholeLinks } from "@/constants/links";
 import { cn } from "@/utils/ui";
 import { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/json-ld";
+import { defaultMetadata } from "@/site.config";
 
 export const metadata: Metadata = {
-  title: "Links",
-  description: "Here are links to other platforms where you can find me.",
+  title: "الروابط",
+  description: "روابط وحسابات تاج الأصفياء إسحاق على مختلف المنصات المهنية والتقنية ومواقع التواصل الاجتماعي.",
+  alternates: {
+    canonical: `${defaultMetadata.url}/links`,
+  },
+  openGraph: {
+    title: `الروابط | ${defaultMetadata.nameAr}`,
+    description: "روابط وحسابات تاج الأصفياء إسحاق على مختلف المنصات المهنية والتقنية ومواقع التواصل الاجتماعي.",
+    url: `${defaultMetadata.url}/links`,
+    locale: "ar_SD",
+  },
 };
 
 export default async function Page() {
@@ -15,6 +26,13 @@ export default async function Page() {
       className="relative space-y-4"
       enableNavShadow
     >
+      <BreadcrumbJsonLd
+        items={[
+          { name: "الرئيسية", url: defaultMetadata.url },
+          { name: "الروابط", url: `${defaultMetadata.url}/links` },
+        ]}
+      />
+
       <h1 className="max-w-screen-sm text-4xl font-bold">Links</h1>
       <p className="max-w-screen-sm space-y-4 text-neutral-700 dark:text-neutral-300">
         Here are links to other platforms where you can find me. Might not be active on all of them. Not promising

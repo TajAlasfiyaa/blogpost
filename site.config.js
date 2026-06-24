@@ -16,7 +16,9 @@ const url = `${protocol}://${domain}`;
 /* #__PURE__ */
 const defaultMetadata = {
   title: "TajAlasfiyaa",
-  description: "Software engineer specialized in frontend development",
+  nameAr: "تاج الأصفياء إسحاق",
+  nameEn: "Taj Alasfiyaa Ishag",
+  description: "تاج الأصفياء إسحاق — مطوّر ويب وطالب هندسة كهربائية بجامعة السودان للعلوم والتكنولوجيا. مدونة تقنية تشمل مقالات عن البرمجة والذكاء الاصطناعي.",
   email: "tajalasfiyaa@gmail.com",
   domain,
   url,
@@ -34,7 +36,7 @@ const defaultMetadata = {
   },
 };
 const customMetadata = {
-  blueskyUrl: `https://bsky.app/profile/}`,
+  blueskyUrl: `https://bsky.app/profile/TajAlasfiyaa.bsky.social`,
   cohostUrl: "https://cohost.org/TajAlasfiyaa",
   emailUrl: `mailto:${defaultMetadata.email}`,
   githubUrl: `https://github.com/${defaultMetadata.github.username}`,

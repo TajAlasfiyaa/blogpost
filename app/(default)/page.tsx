@@ -10,94 +10,70 @@ import { links } from "@/constants/links";
 import { getHomeSingleton } from "@/server/keystatic";
 import { cn } from "@/utils/ui";
 import { DocumentRenderer } from "@keystatic/core/renderer";
+
 export default async function Homepage() {
   const query = await getHomeSingleton();
   const content = await query.content();
   const renderer = getBasicRenderers();
+
   return (
-    <ContainerSection className="relative flex flex-col items-start">
-      <h1 className="mb-2 text-4xl font-bold">TajAlasfiyaa Ishag</h1>
-      <p className="mb-8 text-2xl">
-        Software engineer specialized in frontend development
-      </p>
-      <div
-        className={cn(
-          "mb-16 max-w-screen-sm space-y-4 text-neutral-700 dark:text-neutral-300",
-          "[&_a]:text-primary-700 dark:[&_a]:text-primary-500 [&_a:hover]:underline"
-        )}
-      >
-        <DocumentRenderer document={content} renderers={renderer} />
-      </div>
-      <ul className="[&_a:hover]:text-primary-600 dark:[&_a:hover]:text-primary-500 flex items-center gap-x-4">
-        {links.map(({ href, Icon, label }) => (
-          <li key={label}>
-            <Tooltip disableHoverableContent>
-              <TooltipTrigger asChild>
-                <AdaptiveLink aria-label={label} href={href} rel="me">
-                  <Icon
-                    aria-label={label}
-                    aria-hidden="true"
-                    className="h-5 w-5"
-                  />
-                </AdaptiveLink>
-              </TooltipTrigger>
-              <TooltipContent sideOffset={8}>{label}</TooltipContent>
-            </Tooltip>
-          </li>
-        ))}
-      </ul>
-      <div
-        dir="rtl"
-        className="mb-2 
-       "
-      >
-        <h2 className="text-3xl ">تاج الاصفياء اسحاق محمود</h2>
-        <br />
-        طالب هندسة كهربائية بجامعة السودان للعلوم والتكنولجيا مهتم بالتكنولجيا
-        متخصص في مجال تطوير الويب
+    <ContainerSection className="relative flex flex-col items-start py-12 md:py-20">
+      <div className="w-full max-w-screen-md space-y-8">
+        {/* Main Hero Header */}
+        <header className="space-y-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-l from-primary-600 via-sky-500 to-indigo-500 bg-clip-text text-transparent">
+            تاج الأصفياء إسحاق محمود
+          </h1>
+          <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-200">
+            TajAlasfiyaa Ishag | مطور ويب ومهندس كهربائي
+          </h2>
+          <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            طالب هندسة كهربائية بجامعة السودان للعلوم والتكنولوجيا، مهتم بالتكنولوجيا ومتخصص في مجال تطوير الويب وتطبيقات واجهات المستخدم (Frontend Development) وتطبيقات الذكاء الاصطناعي.
+          </p>
+        </header>
+
+        {/* Keystatic CMS Content */}
+        <article
+          className={cn(
+            "prose prose-neutral dark:prose-invert max-w-none text-neutral-700 dark:text-neutral-300",
+            "[&_a]:text-primary-600 dark:[&_a]:text-primary-400 [&_a:hover]:underline"
+          )}
+        >
+          <DocumentRenderer document={content} renderers={renderer} />
+        </article>
+
+        {/* Social & Contact Links */}
+        <section className="w-full pt-6 border-t border-neutral-200 dark:border-neutral-800">
+          <h3 className="sr-only">روابط التواصل الاجتماعي</h3>
+          <ul className="flex flex-wrap items-center gap-3">
+            {links.map(({ href, Icon, label }) => (
+              <li key={label}>
+                <Tooltip disableHoverableContent>
+                  <TooltipTrigger asChild>
+                    <AdaptiveLink
+                      aria-label={label}
+                      href={href}
+                      rel="me"
+                      className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 hover:bg-primary-50 dark:hover:bg-primary-950/30 hover:border-primary-500/50 transition-all group"
+                    >
+                      <Icon
+                        aria-label={label}
+                        aria-hidden="true"
+                        className="h-5 w-5 text-neutral-600 dark:text-neutral-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
+                      />
+                      <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                        {label}
+                      </span>
+                    </AdaptiveLink>
+                  </TooltipTrigger>
+                  <TooltipContent sideOffset={8}>{label}</TooltipContent>
+                </Tooltip>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </ContainerSection>
   );
 }
-// <>
-//   <Home />
-//   {/* <divd className="w-full flex flex-row-reverse p-3  ">
-//     {[
-//       ["Blog", "/blog"],
-//       ["Home", "/"],
-//     ].map((link) => (
-//       <Button asChild variant="link" key={link[1]}>
-//         <Link className="text-xl font-bold " href={link[1]}>
-//           {link[0]}
-//         </Link>
-//       </Button>
-//     ))}
-//     <ModeToggle />
-//   </div> */}
 
-//   {/* Hero
-//   <div className="m-auto  max-w-5xl  ">
-//     <div className="flex flex-col md:flex-row items-center">
-//       <Image
-//         alt="tajalasfiya victor photo "
-//         src={taj}
-//         height={400}
-//         width={400}
-//         className="w-60 md:w-[25rem]"
-//       />
-//       <div className=" flex flex-col items-center justify-center">
-//         <p>Hello I'm</p>
-//         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-//           TajAlasfiyaa Ishag ⚡️
-//         </h1>
-//         <h2 className="scroll-m-20 text-1xl font-bold my-5 tracking-tight lg:text-5xl">
-//           Frontend Developer
-//         </h2>
-//         <div>
-//           <Button>Download CV</Button>
-//           <Button variant="secondary">Contact Info</Button>
-//         </div>
-//       </div>
-//     </div>
-//   </div> */}
-// </>
