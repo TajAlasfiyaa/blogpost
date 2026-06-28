@@ -1,0 +1,212 @@
+---
+title: حل مشكلة البلوتوث في ويندوز 10 و 11 نهائياً (الدليل الشامل)
+description: >-
+  تعرف على كيفية حل مشاكل البلوتوث في ويندوز 10 وويندوز 11، واختفاء أيقونة
+  البلوتوث، بالإضافة إلى سكربت PowerShell جاهز لإعادة تشغيل وإصلاح خدمات
+  البلوتوث بضغطة زر.
+publishedAt: '2026-06-28'
+draft: false
+redirect:
+  discriminant: false
+---
+## لة البلوتوث في ويندوز 10 و 11 نهائياً (مع أداة مخصصة)
+
+تعتبر مشاكل البلوتوث في أنظمة التشغيل **ويندوز 10** و **ويندوز 11** من أكثر المشاكل التقنية إزعاجاً للمستخدمين. سواء كنت تواجه مشكلة **اختفاء أيقونة البلوتوث** من الإعدادات، أو **فشل اقتران الأجهزة**، أو حتى **تقطيع الصوت في سماعات البلوتوث**، فإن هذا الدليل الشامل سيوفر لك الحلول الجذرية.
+
+بالإضافة إلى ذلك، نقدم لك في هذا المقال أداة سحرية برمجناها خصيصاً باستخدام PowerShell (تعرف باسم **Bluetooth Toggle**)، تتيح لك إصلاح وإدارة خدمات البلوتوث بضغطة زر واحدة!
+
+---
+
+## 🛠️ ما هو سكربت "Bluetooth Toggle"؟
+
+عندما يتعطل البلوتوث في ويندوز، غالباً ما يكون السبب هو "تعليق" في الخدمات الأساسية (Windows Services) التي تشغل البلوتوث في الخلفية. بدلاً من الدخول في إعدادات ويندوز المعقدة والبحث عن الخدمات لإعادة تشغيلها يدوياً، قمنا بتطوير **سكربت Bluetooth Toggle**.
+
+هذا السكربت هو أداة تعمل عبر سطر الأوامر (PowerShell)، وتهدف إلى إدارة جميع **خدمات البلوتوث** الأساسية بسهولة وفعالية لضمان أفضل أداء.
+
+### الخدمات التي يتحكم بها السكربت:
+
+1. `BTAGService` (خدمة بوابة الصوت): المسؤولة عن نقل الصوت إلى سماعات البلوتوث.
+1. `BthAvctpSvc` (خدمة AVCTP): لبروتوكول التحكم في نقل الصوت/الفيديو.
+1. `bthserv` (خدمة دعم البلوتوث الأساسية): وهي القلب النابض لاكتشاف الأجهزة والاتصال بها.
+1. `RtkBtManServ`: خدمة إدارة أجهزة بلوتوث الخاصة ببطاقات Realtek.
+1. `BluetoothUserService`: خدمات المستخدم المتغيرة.
+
+---
+
+## 💻 كيفية إنشاء ملف الأداة (السكربت)
+
+إذا كنت تبحث عن **حل مشكلة البلوتوث في ويندوز** بضغطة زر، يمكنك إنشاء هذه الأداة باتباع الخطوات التالية:
+
+1. افتح برنامج **Notepad** (المفكرة) في نظام ويندوز.
+1. قم بنسخ كود PowerShell التالي بالكامل والصقه في المفكرة:
+
+```
+# =====================================================
+#  Bluetooth Toggle Script
+#  Run as Administrator
+# =====================================================
+
+$services = @('BTAGService', 'BthAvctpSvc', 'bthserv', 'RtkBtManServ')
+
+# Function to get all bluetooth related services including user services
+function Get-BTServices {
+    $dynamicServices = Get-Service | Where-Object {$_.Name -like 'BluetoothUserService_*'} | Select-Object -ExpandProperty Name
+    $all = $services + $dynamicServices
+    # Return unique items to avoid duplicates
+    return $all | Select-Object -Unique
+}
+
+# Check current state
+$current = Get-Service -Name 'bthserv' -ErrorAction SilentlyContinue
+
+Write-Host "============================================" -ForegroundColor Cyan
+Write-Host "         Bluetooth Service Toggle" -ForegroundColor Cyan
+Write-Host "============================================" -ForegroundColor Cyan
+Write-Host ""
+
+if ($current.Status -eq 'Running') {
+    Write-Host "  Status: ON  [Running]" -ForegroundColor Green
+} else {
+    Write-Host "  Status: OFF [Stopped]" -ForegroundColor Red
+}
+
+Write-Host ""
+Write-Host "  1 - Turn ON  Bluetooth" -ForegroundColor Green
+Write-Host "  2 - Turn OFF Bluetooth" -ForegroundColor Red
+Write-Host "  3 - Restart  Bluetooth" -ForegroundColor Yellow
+Write-Host "  Q - Quit" -ForegroundColor Gray
+Write-Host ""
+
+$choice = Read-Host "  Choose"
+
+switch ($choice) {
+    '1' {
+        Write-Host ""
+        Write-Host "  Starting Bluetooth services..." -ForegroundColor Cyan
+        $allServices = Get-BTServices
+        foreach ($s in $allServices) {
+            try {
+                Set-Service -Name $s -StartupType Manual -ErrorAction SilentlyContinue
+                Start-Service -Name $s -ErrorAction Stop
+                Write-Host "  [OK] $s -> Running" -ForegroundColor Green
+            } catch {
+                Write-Host "  [SKIP] $s : $($_.Exception.Message)" -ForegroundColor DarkGray
+            }
+        }
+        Write-Host ""
+        Write-Host "  Bluetooth is ON!" -ForegroundColor Green
+    }
+    '2' {
+        Write-Host ""
+        Write-Host "  Stopping Bluetooth services..." -ForegroundColor Cyan
+        $allServices = Get-BTServices
+        foreach ($s in $allServices) {
+            try {
+                Stop-Service -Name $s -Force -ErrorAction Stop
+                Set-Service -Name $s -StartupType Disabled -ErrorAction SilentlyContinue
+                Write-Host "  [OK] $s -> Stopped" -ForegroundColor Yellow
+            } catch {
+                Write-Host "  [SKIP] $s : $($_.Exception.Message)" -ForegroundColor DarkGray
+            }
+        }
+        Write-Host ""
+        Write-Host "  Bluetooth is OFF!" -ForegroundColor Red
+    }
+    '3' {
+        Write-Host ""
+        Write-Host "  Restarting Bluetooth services..." -ForegroundColor Cyan
+        $allServices = Get-BTServices
+        foreach ($s in $allServices) {
+            try {
+                Stop-Service -Name $s -Force -ErrorAction SilentlyContinue
+                Write-Host "  [OK] $s -> Stopped" -ForegroundColor Yellow
+            } catch { }
+        }
+        Start-Sleep -Seconds 2
+        foreach ($s in $allServices) {
+            try {
+                Set-Service -Name $s -StartupType Manual -ErrorAction SilentlyContinue
+                Start-Service -Name $s -ErrorAction Stop
+                Write-Host "  [OK] $s -> Running" -ForegroundColor Green
+            } catch {
+                Write-Host "  [SKIP] $s : $($_.Exception.Message)" -ForegroundColor DarkGray
+            }
+        }
+        Write-Host ""
+        Write-Host "  Bluetooth is Restarted!" -ForegroundColor Cyan
+    }
+    'Q' { Write-Host "  Bye!" -ForegroundColor Gray }
+    default { Write-Host "  Invalid choice." -ForegroundColor Red }
+}
+
+Write-Host ""
+Read-Host "Press Enter to close"
+```
+
+1. من القائمة العلوية اضغط على `File` ثم `Save As`.
+1. في خانة "Save as type"، اختر `All Files (*.*)`.
+1. قم بتسمية الملف `bluetooth_toggle.ps1` واحفظه على **سطح المكتب** (Desktop).
+
+### كيفية إنشاء اختصار (Shortcut) لتشغيل الأداة كمسؤول
+
+لتشغيل السكربت بسهولة دون الحاجة لفتح PowerShell كمسؤول في كل مرة:
+
+1. اضغط كليك يمين في أي مساحة فارغة على سطح المكتب، ثم اختر **New** > **Shortcut**.
+1. انسخ المسار التالي وضعه في خانة المسار (مع تغيير `Ahmed Farah` إلى اسم المستخدم الخاص بك إذا لزم الأمر):
+1. اضغط **Next**، وسمّ الاختصار `إصلاح البلوتوث` أو `Bluetooth Toggle` ثم **Finish**.
+1. *(اختياري)* لتغيير الأيقونة: كليك يمين على الاختصار > **Properties** > **Change Icon** > اكتب `bthprops.cpl` في مسار البحث واضغط Enter، ثم اختر أيقونة البلوتوث واضغط OK.
+
+```
+powershell.exe -WindowStyle Hidden -Command "Start-Process powershell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -File \"C:\Users\Ahmed Farah\Desktop\bluetooth_toggle.ps1\"'"
+```
+
+---
+
+## 💡 حلول مشاكل البلوتوث الشائعة في الويندوز
+
+إذا واجهتك مشكلة في البلوتوث، فإليك أهم الخطوات العملية لحلها بالترتيب:
+
+### 1. الحل السريع: عمل Restart لخدمات البلوتوث
+
+> [!TIP]
+**أسرع طريقة:** إذا كان الماوس يتقطع أو السماعة ترفض الاتصال، افتح أداة **Bluetooth Toggle** واضغط على رقم **3 (Restart)**. هذا الخيار سيقوم بعمل "إنعاش" كامل لنظام البلوتوث في ثوانٍ.
+
+### 2. حل مشكلة اختفاء البلوتوث من الإعدادات ويندوز 10/11
+
+تحدث هذه المشكلة عندما يفقد النظام تواصله مع قطعة البلوتوث (Hardware).
+
+- افتح أداة **Bluetooth Toggle** واضغط **1** للتأكد من أن جميع الخدمات قيد التشغيل.
+- إذا استمرت المشكلة، قم بعمل **إعادة تشغيل كاملة (Restart)** للحاسوب وليس إيقاف تشغيل عادي.
+- تأكد من عدم تفعيل وضع الطيران (Airplane Mode) عن طريق الخطأ عبر أزرار الكيبورد (مثل `Fn + F2`).
+
+### 3. الأجهزة مقترنة ولكن لا تتصل (Paired but not Connected)
+
+- استخدم خيار إيقاف التشغيل (Turn OFF) في السكربت، ثم أعد تشغيله (Turn ON).
+- اذهب إلى **إعدادات البلوتوث**، وقم بإزالة الجهاز (Remove Device)، ثم أعد عملية الاقتران (Pairing) من البداية.
+
+### 4. تحديث أو إعادة تثبيت تعريف البلوتوث (Bluetooth Drivers)
+
+إذا كانت المشكلة مستمرة، فالعيب غالباً في تعريفات اللوحة الأم:
+
+1. اضغط كليك يمين على قائمة ابدأ (Start) واختر **Device Manager** (إدارة الأجهزة).
+1. وسّع قسم **Bluetooth**.
+1. اضغط كليك يمين على قطعة البلوتوث (مثل *Intel Wireless Bluetooth* أو *Realtek Bluetooth Adapter*) واختر **Uninstall device** (لا تضع علامة لحذف البرنامج).
+1. أعد تشغيل الحاسوب وسيقوم ويندوز بإعادة تثبيت أحدث تعريف بشكل تلقائي.
+
+> [!WARNING]
+تجنب استخدام برامج الطرف الثالث لتحديث التعريفات العشوائية. الاعتماد على **Windows Update** أو موقع الشركة المصنعة لجهازك هو الأفضل لضمان استقرار البلوتوث.
+
+### 5. حل مشكلة تقطيع صوت البلوتوث (Audio Stuttering)
+
+- **إعدادات توفير الطاقة:** لمنع ويندوز من إيقاف البلوتوث لتوفير البطارية، افتح `Device Manager` > خصائص البلوتوث > تبويب `Power Management` > وأزل علامة الصح من خيار السماح بإطفاء الجهاز *(Allow the computer to turn off this device to save power)*.
+- **التداخل اللاسلكي:** إشارات الواي فاي (2.4 GHz) قد تتداخل مع البلوتوث. استخدم تردد 5 GHz للواي فاي إذا أمكن، وقلل المسافة بين جهازك والحاسوب.
+
+---
+
+## 🎯 الخلاصة
+
+لست بحاجة لتكون خبيراً تقنياً لـ **حل مشكلة البلوتوث في ويندوز**. من خلال تحديث التعريفات وتجنب تعارضات الطاقة، واستخدام أداة **Bluetooth Toggle** المبتكرة، ستضمن استقرار اتصال الأجهزة اللاسلكية بسلاسة تامة. احتفظ باختصار السكربت على سطح المكتب، لتكون مستعداً لإصلاح أي خلل في ثوانٍ معدودة!
+
+keywords: "حل مشكلة البلوتوث ويندوز 10, اختفاء البلوتوث ويندوز 11, تعريف البلوتوث, سكربت PowerShell للبلوتوث, مشكلة تقطيع صوت البلوتوث"
+
+# 
